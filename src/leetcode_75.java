@@ -20,19 +20,40 @@ Could you come up with an one-pass algorithm using only constant space?
 有红，白，蓝三色。0，1，2表示三种颜色。不能使用库函数，想要使用O（n）算法。
  */
 public class leetcode_75 {
+//    public void sortColors(int[] nums) {
+//        int []book={0,0,0};
+//        for(int i=0;i<nums.length;i++){
+//            int x=nums[i];
+//            book[x]++;
+//        }
+//        int index=0;
+//        for(int i=0;i<book.length;i++){
+//            for(int j=0;j<book[i];j++){
+//                nums[index++]=i;
+//            }
+//        }
+//    }
     public void sortColors(int[] nums) {
-        int []book={0,0,0};
-        for(int i=0;i<nums.length;i++){
-            int x=nums[i];
-            book[x]++;
-        }
-        int index=0;
-        for(int i=0;i<book.length;i++){
-            for(int j=0;j<book[i];j++){
-                nums[index++]=i;
+        int left=0;
+        int right=nums.length-1;
+        int i=0;
+        while (i<=right){
+            if(nums[i]==0){
+                swap(nums,i++,left++);
+            }else if(nums[i]==2){
+                swap(nums,i,right--);
+            }else{
+                i++;
             }
         }
+
     }
+    private void swap(int []nums,int i,int j){
+        int tmp=nums[i];
+        nums[i]=nums[j];
+        nums[j]=tmp;
+    }
+
 
     public static void main(String[] args) {
         int [] nums={1,0,0,2,0,1,0,2,1,0};
